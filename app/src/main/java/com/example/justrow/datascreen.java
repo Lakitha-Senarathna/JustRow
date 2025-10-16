@@ -15,7 +15,6 @@ public class datascreen extends AppCompatActivity implements SensorEventListener
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private TextView tvTimeElapsed, tvDistance, tvCurrentSplit, tvAvgSplit;
-
     private long startTime;
     private long lastTime;
     private double velocity = 0.0;

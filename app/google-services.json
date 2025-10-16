@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "823310157400",
+    "project_id": "justrow-8a5eb",
+    "storage_bucket": "justrow-8a5eb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823310157400:android:87ee0098bc68084c5b6c2d",
+        "android_client_info": {
+          "package_name": "com.example.justrow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3vnAqTlYecTJ9-XRKeZyoWU3ppoLNDAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -76,7 +76,7 @@ public class registrationPage extends AppCompatActivity {
                                                 Toast.LENGTH_SHORT).show();
 
                                         // Send user to login page
-                                        Intent intent = new Intent(getApplicationContext(), loginPage.class);
+                                        Intent intent = new Intent(getApplicationContext(), dashboard.class);
                                         startActivity(intent);
                                         finish();
                                     }

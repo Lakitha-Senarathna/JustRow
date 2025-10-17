@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class loginPage extends AppCompatActivity {
@@ -73,9 +75,21 @@ public class loginPage extends AppCompatActivity {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                 }
                                 else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(loginPage.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    // Exception handling
+                                    Exception exception = task.getException();
+
+                                    if(exception instanceof FirebaseAuthInvalidUserException){
+                                        Toast.makeText(loginPage.this, "User does not exist",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                    else if(exception instanceof FirebaseAuthInvalidCredentialsException){
+                                        Toast.makeText(loginPage.this, "Invalid credentials",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                    else{
+                                        Toast.makeText(loginPage.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
                         });

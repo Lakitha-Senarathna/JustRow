@@ -60,33 +60,34 @@ public class registrationPage extends AppCompatActivity {
                     editTextPassword.setError("Passwords do not match");
                     editTextConfirmPassword.setError("Passwords do not match");
                 }
-
-                if(firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
-                    editTextFirstName.setError("Please enter all fields");
+                else if(firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
+                    Toast.makeText(registrationPage.this, "All field should not be empty.",
+                            Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    mAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Toast.makeText(registrationPage.this, "Authentication Successful.",
+                                                Toast.LENGTH_SHORT).show();
 
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Toast.makeText(registrationPage.this, "Authentication Successful.",
-                                            Toast.LENGTH_SHORT).show();
-
-                                    // Send user to login page
-                                    Intent intent = new Intent(getApplicationContext(), loginPage.class);
-                                    startActivity(intent);
-                                    finish();
+                                        // Send user to login page
+                                        Intent intent = new Intent(getApplicationContext(), loginPage.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                    else {
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText(registrationPage.this, "Authentication Failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                                else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(registrationPage.this, "Authentication Failed.",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                            });
+                }
             }
         });
     }

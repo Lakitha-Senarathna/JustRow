@@ -16,11 +16,19 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class registrationPage extends AppCompatActivity {
 
@@ -28,6 +36,7 @@ public class registrationPage extends AppCompatActivity {
     Button regButton;
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +46,7 @@ public class registrationPage extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         editTextFirstName = findViewById(R.id.firstName);
         editTextLastName = findViewById(R.id.lastName);
@@ -72,13 +82,42 @@ public class registrationPage extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        Toast.makeText(registrationPage.this, "Account Creation Successful.",
+                                        Toast.makeText(registrationPage.this, "Account Creation Successful",
                                                 Toast.LENGTH_SHORT).show();
 
-                                        // Send user to login page
-                                        Intent intent = new Intent(getApplicationContext(), loginPage.class);
-                                        startActivity(intent);
-                                        finish();
+                                        String userID = user.getUid();
+
+                                        Map<String, Object> userInformation = new HashMap<>();
+                                        userInformation.put("firstName", firstName);
+                                        userInformation.put("lastName", lastName);
+                                        userInformation.put("email", email);
+                                        userInformation.put("registration_date", new Timestamp(new Date()));
+
+                                        db.collection("Users").document(userID)
+                                        .set(userInformation)
+
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        Toast.makeText(registrationPage.this, "User Information Stored in the DataBase",
+                                                                Toast.LENGTH_SHORT).show();
+
+                                                        // Send user to login page
+                                                        Intent intent = new Intent(getApplicationContext(), loginPage.class);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    }
+                                                })
+
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(registrationPage.this, "Error Occurred while Saving Workout, Try Again",
+                                                                Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+
+
                                     }
                                     else {
                                         // Exception handling
@@ -89,7 +128,7 @@ public class registrationPage extends AppCompatActivity {
                                                     Toast.LENGTH_SHORT).show();
                                         }
                                         else{
-                                            Toast.makeText(registrationPage.this, "Registration Failed.",
+                                            Toast.makeText(registrationPage.this, "Registration Failed",
                                                     Toast.LENGTH_SHORT).show();
                                         }
                                     }

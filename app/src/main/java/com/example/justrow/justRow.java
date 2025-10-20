@@ -19,16 +19,29 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Firebase;
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.content.Context;
+import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayDeque;
+import java.util.Date;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class justRow extends AppCompatActivity implements SensorEventListener {
 
@@ -69,6 +82,9 @@ public class justRow extends AppCompatActivity implements SensorEventListener {
 
     private long lastStrokeDetectedAt = 0L;
 
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +101,8 @@ public class justRow extends AppCompatActivity implements SensorEventListener {
         btnReset = findViewById(R.id.btnReset);
         btnSave  = findViewById(R.id.btnSave);
 
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -198,8 +216,52 @@ public class justRow extends AppCompatActivity implements SensorEventListener {
 
     private void saveSession() {
         double distance = totalDistance;
-        long time = (long) saveTime;
+        long saveTime = (System.currentTimeMillis() - sessionStartTime) / 1000;
         double averageSplit = saveAvgSplit;
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        String userID = user.getUid();  // Getting userID of current signed in user
+
+        // Formatting date and time to be saved in the database
+        Date now = new Date();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+
+        String date = dateFormat.format(now);
+        String time = timeFormat.format(now);
+
+        // Creating workout object to be saved to the database
+        Map<String, Object> workout = new HashMap<>();
+        workout.put("saved_date", date);
+        workout.put("saved_time", time);
+        workout.put("distance", distance);
+        workout.put("time", saveTime);
+        workout.put("averageSplit", averageSplit);
+
+        db.collection("Users").document(userID)
+                .collection("Workouts")
+                .add(workout)
+
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(justRow.this, "Workout Successfully Saved to DataBase",
+                                Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(getApplicationContext(), dashboard.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(justRow.this, "Error Occurred while Saving Workout, Try Again",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void updateButtons() {

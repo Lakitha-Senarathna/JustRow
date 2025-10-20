@@ -44,6 +44,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:id="@+id/reg_email"
+        android:inputType="textEmailAddress"
         android:hint="Email"/>
 
     <EditText

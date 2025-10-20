@@ -58,8 +58,8 @@ public class loginPage extends AppCompatActivity {
 
                 String email, password;
 
-                email = loginEmail.getText().toString();
-                password = loginPassword.getText().toString();
+                email = loginEmail.getText().toString().trim();
+                password = loginPassword.getText().toString().trim();
 
                 if(email.isEmpty() || password.isEmpty()){
                     Toast.makeText(loginPage.this, "Fields cannot be empty",
@@ -73,6 +73,10 @@ public class loginPage extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     FirebaseUser user = mAuth.getCurrentUser();
+
+                                    Intent intent = new Intent(getApplicationContext(), dashboard.class);
+                                    startActivity(intent);
+                                    finish();
                                 }
                                 else {
                                     // Exception handling

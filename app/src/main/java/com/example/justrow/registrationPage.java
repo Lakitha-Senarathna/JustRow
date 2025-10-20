@@ -19,12 +19,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class registrationPage extends AppCompatActivity {
 
     EditText editTextFirstName, editTextLastName, editTextEmail, editTextPassword, editTextConfirmPassword;
-    TextView toLoginPage;
     Button regButton;
 
     private FirebaseAuth mAuth;
@@ -50,18 +50,18 @@ public class registrationPage extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 String firstName, lastName, email, password, confirmPassword;
-                firstName = editTextFirstName.getText().toString();
-                lastName = editTextLastName.getText().toString();
-                email = editTextEmail.getText().toString();
-                password = editTextPassword.getText().toString();
-                confirmPassword = editTextConfirmPassword.getText().toString();
+                firstName = editTextFirstName.getText().toString().trim();
+                lastName = editTextLastName.getText().toString().trim();
+                email = editTextEmail.getText().toString().trim();
+                password = editTextPassword.getText().toString().trim();
+                confirmPassword = editTextConfirmPassword.getText().toString().trim();
 
                 if(!password.equals(confirmPassword)){
                     editTextPassword.setError("Passwords do not match");
                     editTextConfirmPassword.setError("Passwords do not match");
                 }
                 else if(firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
-                    Toast.makeText(registrationPage.this, "All field should not be empty.",
+                    Toast.makeText(registrationPage.this, "All  input fields should not be empty.",
                             Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -72,33 +72,31 @@ public class registrationPage extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        Toast.makeText(registrationPage.this, "Authentication Successful.",
+                                        Toast.makeText(registrationPage.this, "Account Creation Successful.",
                                                 Toast.LENGTH_SHORT).show();
 
                                         // Send user to login page
-                                        Intent intent = new Intent(getApplicationContext(), dashboard.class);
+                                        Intent intent = new Intent(getApplicationContext(), loginPage.class);
                                         startActivity(intent);
                                         finish();
                                     }
                                     else {
-                                        // If sign in fails, display a message to the user.
-                                        Toast.makeText(registrationPage.this, "Authentication Failed.",
-                                                Toast.LENGTH_SHORT).show();
+                                        // Exception handling
+                                        Exception exception = task.getException();
+
+                                        if(exception instanceof FirebaseAuthUserCollisionException){
+                                            Toast.makeText(registrationPage.this, "User already exists",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                        else{
+                                            Toast.makeText(registrationPage.this, "Registration Failed.",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 }
                             });
                 }
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            currentUser.reload();
-        }
     }
 }

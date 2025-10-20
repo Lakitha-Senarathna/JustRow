@@ -13,7 +13,8 @@
         android:layout_height="500dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:src="@drawable/loginPage"
+        android:layout_marginTop="@android:dimen/app_icon_size"
+        android:src="@drawable/rowing"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +26,7 @@
        android:layout_marginTop="10dp"
        android:layout_marginLeft="50dp"
        android:layout_marginRight="50dp"
+        android:id="@+id/btn_previous_sessions"
        android:text="Previous Sessions"/>
 
     <Button
@@ -33,6 +35,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
+        android:id="@+id/btn_custom_workout"
         android:text="Custom Workout"/>
 
     <Button
@@ -41,6 +44,16 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
+        android:id="@+id/just_row"
         android:text="Just Row"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:id="@+id/btn_logout"
+        android:text="Logout"/>
 
 </LinearLayout>

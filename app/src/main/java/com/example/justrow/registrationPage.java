@@ -81,7 +81,8 @@ public class registrationPage extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
-                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        FirebaseUser user = mAuth.getInstance().getCurrentUser();
+
                                         Toast.makeText(registrationPage.this, "Account Creation Successful",
                                                 Toast.LENGTH_SHORT).show();
 

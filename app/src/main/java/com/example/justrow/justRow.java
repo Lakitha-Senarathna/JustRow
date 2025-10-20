@@ -219,9 +219,6 @@ public class justRow extends AppCompatActivity implements SensorEventListener {
         long saveTime = (System.currentTimeMillis() - sessionStartTime) / 1000;
         double averageSplit = saveAvgSplit;
 
-        FirebaseUser user = mAuth.getCurrentUser();
-        String userID = user.getUid();  // Getting userID of current signed in user
-
         // Formatting date and time to be saved in the database
         Date now = new Date();
 
@@ -231,37 +228,17 @@ public class justRow extends AppCompatActivity implements SensorEventListener {
         String date = dateFormat.format(now);
         String time = timeFormat.format(now);
 
-        // Creating workout object to be saved to the database
-        Map<String, Object> workout = new HashMap<>();
-        workout.put("saved_date", date);
-        workout.put("saved_time", time);
-        workout.put("distance", distance);
-        workout.put("time", saveTime);
-        workout.put("averageSplit", averageSplit);
+        // Sending data to saveSession to be stored in the database
+        Intent intent = new Intent(getApplicationContext(), saveSession.class);
 
-        db.collection("Users").document(userID)
-                .collection("Workouts")
-                .add(workout)
+        intent.putExtra("distance", distance);
+        intent.putExtra("savetime", saveTime);
+        intent.putExtra("averageSplit", averageSplit);
+        intent.putExtra("date", date);
+        intent.putExtra("time", time);
 
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(justRow.this, "Workout Successfully Saved to DataBase",
-                                Toast.LENGTH_SHORT).show();
-
-                        Intent intent = new Intent(getApplicationContext(), dashboard.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                })
-
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(justRow.this, "Error Occurred while Saving Workout, Try Again",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+        startActivity(intent);
+        finish();
     }
 
     private void updateButtons() {

@@ -238,7 +238,6 @@ public class justRow extends AppCompatActivity implements SensorEventListener {
         intent.putExtra("time", time);
 
         startActivity(intent);
-        finish();
     }
 
     private void updateButtons() {
@@ -400,5 +399,14 @@ public class justRow extends AppCompatActivity implements SensorEventListener {
                 stopSession();
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = new Intent(getApplicationContext(), dashboard.class);
+        startActivity(intent);
+        finish();
     }
 }

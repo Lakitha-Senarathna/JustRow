@@ -26,6 +26,15 @@ public class dashboard extends AppCompatActivity {
         justRow = findViewById(R.id.just_row);
         logout = findViewById(R.id.btn_logout);
 
+        previousSessions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), previousSessions.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

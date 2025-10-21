@@ -17,6 +17,9 @@
         android:theme="@style/Theme.JustRow"
         tools:targetApi="31">
         <activity
+            android:name=".detailedView"
+            android:exported="false" />
+        <activity
             android:name=".saveSession"
             android:exported="false" />
         <activity

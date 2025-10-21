@@ -96,4 +96,13 @@ public class saveSession extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = new Intent(getApplicationContext(), justRow.class);
+        startActivity(intent);
+        finish();
+    }
 }

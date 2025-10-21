@@ -139,4 +139,13 @@ public class registrationPage extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = new Intent(getApplicationContext(), loginPage.class);
+        startActivity(intent);
+        finish();
+    }
 }

@@ -2,6 +2,7 @@ package com.example.justrow;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -57,18 +58,27 @@ public class previousSessions extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        CollectionReference userWorkouts = db.collection("users")
+        CollectionReference userWorkouts = db.collection("Users")
                 .document(userID)
-                .collection("workouts");
+                .collection("Workouts");
 
-        userWorkouts.orderBy("date", Query.Direction.DESCENDING).get()
+        userWorkouts.orderBy("saved_date", Query.Direction.DESCENDING).get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
+
+                    Toast.makeText(previousSessions.this, "Data Fetch Successful",
+                            Toast.LENGTH_SHORT).show();
+
                     workoutTitles.clear();
+                    workoutDataList.clear();
+
                     for (DocumentSnapshot doc: queryDocumentSnapshots){
                         String title = doc.getString("title");
 
                         if (title != null){
                             workoutTitles.add(title);
+                        }
+                        else {
+                            workoutTitles.add("No Title");
                         }
 
                         Map<String, Object> workoutData = new HashMap<>();
@@ -95,10 +105,10 @@ public class previousSessions extends AppCompatActivity {
                     Map<String, Object> data = workoutDataList.get(position);
 
                     Intent intent = new Intent(getApplicationContext(), detailedView.class);
-                    intent.putExtra("title", String.valueOf(data.get("title")));
-                    intent.putExtra("distance", String.valueOf(data.get("distance")));
-                    intent.putExtra("time", String.valueOf(data.get("time")));
-                    intent.putExtra("averageSplit", String.valueOf(data.get("averageSplit")));
+                    intent.putExtra("title", data.get("title") != null ? String.valueOf(data.get("title")) : "N/A");
+                    intent.putExtra("distance", data.get("distance") != null ? String.valueOf(data.get("distance")) : "0");
+                    intent.putExtra("time", data.get("time") != null ? String.valueOf(data.get("time")) : "0");
+                    intent.putExtra("averageSplit", data.get("averageSplit") != null ? String.valueOf(data.get("averageSplit")) : "0");
                     startActivity(intent);
                 });
 

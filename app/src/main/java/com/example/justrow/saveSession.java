@@ -56,13 +56,20 @@ public class saveSession extends AppCompatActivity {
         double distance = intent.getDoubleExtra("distance", 0.0);
         long saveTime = intent.getLongExtra("savetime", 0);
 
+        String title = saveTitle.getText().toString().trim();
+
+        if (title.isEmpty()) {
+            Toast.makeText(saveSession.this, "Title Field can not be Empty",
+                    Toast.LENGTH_SHORT).show();
+        }
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 // Creating workout object to be saved to the database
                 Map<String, Object> workout = new HashMap<>();
-                workout.put("title", saveTitle.getText().toString());
+                workout.put("title", title);
                 workout.put("saved_date", date);
                 workout.put("saved_time", time);
                 workout.put("distance", distance);

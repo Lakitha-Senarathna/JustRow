@@ -36,34 +36,45 @@ public class detailedView extends AppCompatActivity {
         String time = intent.getStringExtra("time");
         String averageSplit = intent.getStringExtra("averageSplit");
 
-        detailedViewTitle.setText(title);
-        detailedViewDistance.setText(distance);
+        Double distanceDouble = Double.parseDouble(distance);
+        int distanceInt = (int) Math.round(distanceDouble);
+
+        detailedViewTitle.setText(String.format("Workout Title : %s ", title));
+        detailedViewDistance.setText(String.format("Distance : %s m", distanceInt));
 
         // Formatting time data into minute : seconds format
         if  (time != null) {
-            int timeInt = Integer.parseInt(time);
+            double timeDouble = Double.parseDouble(time);
+            int timeInt = (int) Math.round(timeDouble);
 
             if (timeInt > 60) {
                 int minutes = timeInt / 60;
                 int seconds = timeInt % 60;
                 detailedViewTime.setText(String.format("Time : %d:%d", minutes, seconds));
             } else {
-                detailedViewTime.setText(String.format("Time : %d", timeInt));
+                detailedViewTime.setText(String.format("Time : %d s", timeInt));
             }
+        }
+        else {
+            detailedViewTime.setText("Time : N/A");
         }
 
         // Formatting time AvgSplit into minute : seconds format
         if (averageSplit != null) {
-            int avgSplitInt = Integer.parseInt(averageSplit);
+            double avgSplitDouble = Double.parseDouble(averageSplit);
+            int avgSplitInt = (int) Math.round(avgSplitDouble);
 
             if (avgSplitInt > 60) {
                 int minutes = avgSplitInt / 60;
                 int seconds = avgSplitInt % 60;
-                detailedViewAvgSplit.setText(String.format("Average Split : %d:%d", minutes, seconds));
+                detailedViewAvgSplit.setText(String.format("Average Split : %d:%d /500m", minutes, seconds));
             }
             else {
-                detailedViewAvgSplit.setText(String.format("Average Split : %d", avgSplitInt));
+                detailedViewAvgSplit.setText(String.format("Average Split : %d s /500m", avgSplitInt));
             }
+        }
+        else {
+            detailedViewAvgSplit.setText("Average Split : N/A");
         }
 
         shareWorkoutDetails.setOnClickListener(new View.OnClickListener() {
@@ -76,32 +87,38 @@ public class detailedView extends AppCompatActivity {
                 StringBuilder shareText = new StringBuilder();
 
                 shareText.append(String.format("Workout Title : %s\n", title));
-                shareText.append(String.format("Distance : %s\n", distance));
+
+                Double distanceDouble = Double.parseDouble(distance);
+                int distanceInt = (int) Math.round(distanceDouble);
+
+                shareText.append(String.format("Distance : %s m\n", distanceInt));
 
                 // Formating Time into minute : seconds format
                 if  (time != null) {
-                    int timeInt = Integer.parseInt(time);
+                    double timeDouble = Double.parseDouble(time);
+                    int timeInt = (int) Math.round(timeDouble);
 
                     if (timeInt >= 60) {
                         int minutes = timeInt / 60;
                         int seconds = timeInt % 60;
-                        shareText.append(String.format("Time : %d:%02d\n", minutes, seconds));
+                        shareText.append(String.format("Time : %d:%02d s\n", minutes, seconds));
                     } else {
-                        shareText.append(String.format("Time : %02d\n", timeInt));
+                        shareText.append(String.format("Time : %02d s\n", timeInt));
                     }
                 }
 
                 // Formating AvgSplit into minute : seconds format
                 if (averageSplit != null) {
-                    int avgSplitInt = Integer.parseInt(averageSplit);
+                    double avgSplitDouble = Double.parseDouble(averageSplit);
+                    int avgSplitInt = (int) Math.round(avgSplitDouble);
 
                     if (avgSplitInt >= 60) {
                         int minutes = avgSplitInt / 60;
                         int seconds = avgSplitInt % 60;
-                        shareText.append(String.format("Average Split : %d:%02d\n", minutes, seconds));
+                        shareText.append(String.format("Average Split : %d:%02d /500m\n", minutes, seconds));
                     }
                     else {
-                        shareText.append(String.format("Average Split : %02d\n", avgSplitInt));
+                        shareText.append(String.format("Average Split : %02d /500m\n", avgSplitInt));
                     }
                 }
                 shareIntent.putExtra(Intent.EXTRA_TEXT, shareText.toString());

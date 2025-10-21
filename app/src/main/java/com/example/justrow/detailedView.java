@@ -26,8 +26,9 @@ public class detailedView extends AppCompatActivity {
         detailedViewDistance = findViewById(R.id.distance);
         detailedViewTime = findViewById(R.id.time);
         detailedViewAvgSplit = findViewById(R.id.avgSplit);
+        shareWorkoutDetails = findViewById(R.id.shareButton);
 
-
+        // Receiving data from previousSessions
         Intent intent = getIntent();
 
         String title = intent.getStringExtra("title");
@@ -81,7 +82,7 @@ public class detailedView extends AppCompatActivity {
                 if  (time != null) {
                     int timeInt = Integer.parseInt(time);
 
-                    if (timeInt > 60) {
+                    if (timeInt >= 60) {
                         int minutes = timeInt / 60;
                         int seconds = timeInt % 60;
                         shareText.append(String.format("Time : %d:%02d\n", minutes, seconds));
@@ -94,7 +95,7 @@ public class detailedView extends AppCompatActivity {
                 if (averageSplit != null) {
                     int avgSplitInt = Integer.parseInt(averageSplit);
 
-                    if (avgSplitInt > 60) {
+                    if (avgSplitInt >= 60) {
                         int minutes = avgSplitInt / 60;
                         int seconds = avgSplitInt % 60;
                         shareText.append(String.format("Average Split : %d:%02d\n", minutes, seconds));

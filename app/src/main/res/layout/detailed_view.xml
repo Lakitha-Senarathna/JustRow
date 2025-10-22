@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/background1"
         android:scaleType="centerCrop"
-        android:alpha="0.8" />
+        android:alpha="1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,8 @@
             android:text="Title"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -43,7 +44,8 @@
             android:text="Title"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -55,7 +57,8 @@
             android:text="Title"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -66,7 +69,8 @@
             android:text="Title"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/shareButton"

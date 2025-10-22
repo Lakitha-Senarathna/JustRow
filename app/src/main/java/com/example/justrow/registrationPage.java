@@ -70,9 +70,20 @@ public class registrationPage extends AppCompatActivity {
                     editTextPassword.setError("Passwords do not match");
                     editTextConfirmPassword.setError("Passwords do not match");
                 }
-                else if(firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
-                    Toast.makeText(registrationPage.this, "All  input fields should not be empty.",
-                            Toast.LENGTH_SHORT).show();
+                if(firstName.isEmpty()){
+                    editTextFirstName.setError("This field can't be Empty");
+                }
+                if(lastName.isEmpty()){
+                    editTextLastName.setError("This field can't be Empty");
+                }
+                if(email.isEmpty()){
+                    editTextEmail.setError("This field can't be Empty");
+                }
+                if(password.isEmpty()){
+                    editTextPassword.setError("This field can't be Empty");
+                }
+                if(confirmPassword.isEmpty()){
+                    editTextConfirmPassword.setError("This field can't be Empty");
                 }
                 else{
                     mAuth.createUserWithEmailAndPassword(email, password)

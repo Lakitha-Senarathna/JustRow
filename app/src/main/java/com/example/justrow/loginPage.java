@@ -61,9 +61,12 @@ public class loginPage extends AppCompatActivity {
                 email = loginEmail.getText().toString().trim();
                 password = loginPassword.getText().toString().trim();
 
-                if(email.isEmpty() || password.isEmpty()){
-                    Toast.makeText(loginPage.this, "Fields cannot be empty",
-                            Toast.LENGTH_SHORT).show();
+                if (email.isEmpty()){
+                    loginEmail.setError("This field can't be Empty");
+                }
+
+                if (password.isEmpty()){
+                    loginPassword.setError("This field can't be Empty");
                 }
 
                 mAuth.signInWithEmailAndPassword(email, password)

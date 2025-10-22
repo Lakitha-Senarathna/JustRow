@@ -37,7 +37,7 @@
             android:layout_marginRight="50dp"
             android:inputType="textEmailAddress"
             android:id="@+id/login_email"
-            android:hint="Email"
+            android:hint="  Email"
             android:textColorHint="@color/white"
             android:background="@drawable/custom_border1" />
 
@@ -48,7 +48,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:id="@+id/login_password"
-            android:hint="Password"
+            android:hint="  Password"
             android:textColorHint="@color/white"
             android:background="@drawable/custom_border1" />
 

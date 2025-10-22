@@ -38,7 +38,7 @@
             android:layout_marginLeft="50dp"
             android:id="@+id/firstName"
             android:background="@drawable/custom_border1"
-            android:hint="First Name"
+            android:hint="  First Name"
             android:textColorHint="@color/white"/>
 
         <EditText
@@ -49,7 +49,7 @@
             android:layout_marginLeft="50dp"
             android:background="@drawable/custom_border1"
             android:id="@+id/lastName"
-            android:hint="Last Name"
+            android:hint="  Last Name"
             android:textColorHint="@color/white"/>
 
         <EditText
@@ -61,7 +61,7 @@
             android:id="@+id/reg_email"
             android:inputType="textEmailAddress"
             android:background="@drawable/custom_border1"
-            android:hint="Email"
+            android:hint="  Email"
             android:textColorHint="@color/white"/>
 
         <EditText
@@ -71,7 +71,7 @@
             android:layout_marginRight="50dp"
             android:layout_marginLeft="50dp"
             android:id="@+id/reg_password"
-            android:hint="Password"
+            android:hint="  Password"
             android:textColorHint="@color/white"
             android:background="@drawable/custom_border1" />
 
@@ -83,7 +83,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="50dp"
             android:background="@drawable/custom_border1"
-            android:hint="Confirm Password"
+            android:hint="  Confirm Password"
             android:textColorHint="@color/white" />
 
         <Button

@@ -1,60 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".loginPage"
-    android:orientation="vertical" >
+    tools:context=".loginPage">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="500dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:src="@drawable/rowing"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:inputType="textEmailAddress"
-        android:id="@+id/login_email"
-        android:hint="Email" />
+        android:layout_height="match_parent"
+        android:src="@drawable/startbackground"
+        android:scaleType="centerCrop"
+        android:alpha="0.8"/>
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:id="@+id/login_password"
-        android:hint="Password" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:layout_marginRight="80dp"
-        android:layout_marginLeft="80dp"
-        android:id="@+id/login_button"
-        android:text="Login" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome Back! "
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="24dp"
+            android:textColor="@color/white"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:id="@+id/to_register"
-        android:text="New User?. Register Now."
-        android:textAlignment="center" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:inputType="textEmailAddress"
+            android:id="@+id/login_email"
+            android:hint="Email"
+            android:textColorHint="@color/white"
+            android:background="@drawable/custom_border1" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:id="@+id/login_password"
+            android:hint="Password"
+            android:textColorHint="@color/white"
+            android:background="@drawable/custom_border1" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:layout_marginRight="80dp"
+            android:layout_marginLeft="80dp"
+            android:id="@+id/login_button"
+            android:text="Login"
+            android:background="@drawable/custom_button1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/to_register"
+            android:text="New User?. Click here to Register."
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
 
-</LinearLayout>
+</FrameLayout>

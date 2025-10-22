@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    tools:context=".justRow"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context=".customRow"
+    android:orientation="vertical"
+    android:weightSum="4">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,18 +27,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:background="@drawable/custom_border2"
                 android:layout_weight="1"
                 android:weightSum="3"
-                android:background="@drawable/custom_border2"
                 android:layout_margin="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Time :"
-                    android:textColor="@color/white"
                     android:gravity="center"
                     android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:textSize="18dp"
                     android:layout_weight="1"/>
 
@@ -45,12 +46,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Time"
-                    android:textColor="@color/white"
                     android:gravity="center"
                     android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:textSize="24dp"
                     android:layout_weight="2"
-                    android:id="@+id/timeElapsed"/>
+                    android:id="@+id/timeElapsedCustom"/>
 
             </LinearLayout>
 
@@ -58,17 +59,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
                 android:background="@drawable/custom_border2"
-                android:weightSum="3">
+                android:layout_weight="1"
+                android:weightSum="3"
+                android:layout_margin="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="SPM :"
-                    android:gravity="center"
                     android:textColor="@color/white"
+                    android:gravity="center"
                     android:textStyle="bold"
                     android:textSize="18dp"
                     android:layout_weight="1"/>
@@ -82,7 +83,7 @@
                     android:textColor="@color/white"
                     android:textSize="24dp"
                     android:layout_weight="2"
-                    android:id="@+id/strokeRate"/>
+                    android:id="@+id/strokeRateCustom"/>
 
             </LinearLayout>
 
@@ -114,7 +115,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="24dp"
-                android:id="@+id/distance"/>
+                android:id="@+id/distanceCustom"/>
 
         </LinearLayout>
 
@@ -139,8 +140,8 @@
                     android:layout_height="wrap_content"
                     android:text="Current Split :"
                     android:gravity="center"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:textSize="18dp"
                     android:layout_weight="1"/>
 
@@ -149,11 +150,11 @@
                     android:layout_height="wrap_content"
                     android:text="N/A"
                     android:gravity="center"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:textSize="24dp"
                     android:layout_weight="2"
-                    android:id="@+id/currentSplit"/>
+                    android:id="@+id/currentSplitCustom"/>
 
             </LinearLayout>
 
@@ -161,8 +162,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_weight="1"
                 android:background="@drawable/custom_border2"
+                android:layout_weight="1"
                 android:weightSum="3"
                 android:layout_margin="10dp">
 
@@ -171,8 +172,8 @@
                     android:layout_height="wrap_content"
                     android:text="Avg. Split :"
                     android:gravity="center"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:textSize="18dp"
                     android:layout_weight="1"/>
 
@@ -185,7 +186,7 @@
                     android:textColor="@color/white"
                     android:textSize="24dp"
                     android:layout_weight="2"
-                    android:id="@+id/avgSplit"/>
+                    android:id="@+id/avgSplitCustom"/>
 
             </LinearLayout>
 
@@ -211,19 +212,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Start Session"
-                    android:background="@drawable/custom_button1"
                     android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:id="@+id/btnStart"/>
+                    android:id="@+id/btnStartCustom"
+                    android:background="@drawable/custom_button1"
+                    android:layout_margin="5dp"/>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Reset Session"
-                    android:background="@drawable/custom_button1"
                     android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:id="@+id/btnReset"/>
+                    android:id="@+id/btnResetCustom"
+                    android:background="@drawable/custom_button1"
+                    android:layout_margin="5dp"/>
 
             </LinearLayout>
 
@@ -239,18 +240,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Stop Session"
+                    android:id="@+id/btnStopCustom"
                     android:background="@drawable/custom_button1"
-                    android:layout_margin="5dp"
-                    android:id="@+id/btnStop"/>
+                    android:layout_margin="5dp"/>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Save Session"
-                    android:background="@drawable/custom_button1"
                     android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:id="@+id/btnSave"/>
+                    android:id="@+id/btnSaveCustom"
+                    android:background="@drawable/custom_button1"
+                    android:layout_margin="5dp"/>
 
             </LinearLayout>
 
@@ -258,4 +259,6 @@
 
     </LinearLayout>
 
-</FrameLayout>
+
+
+</LinearLayout>

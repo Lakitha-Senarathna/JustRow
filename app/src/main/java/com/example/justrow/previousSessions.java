@@ -106,9 +106,9 @@ public class previousSessions extends AppCompatActivity {
 
                     Intent intent = new Intent(getApplicationContext(), detailedView.class);
                     intent.putExtra("title", data.get("title") != null ? String.valueOf(data.get("title")) : "N/A");
-                    intent.putExtra("distance", data.get("distance") != null ? String.valueOf(data.get("distance")) : "0");
-                    intent.putExtra("time", data.get("time") != null ? String.valueOf(data.get("time")) : "0");
-                    intent.putExtra("averageSplit", data.get("averageSplit") != null ? String.valueOf(data.get("averageSplit")) : "0");
+                    intent.putExtra("distance", data.get("distance") != null ? String.valueOf(data.get("distance")) : "N/A");
+                    intent.putExtra("time", data.get("time") != null ? String.valueOf(data.get("time")) : "N/A");
+                    intent.putExtra("averageSplit", data.get("averageSplit") != null ? String.valueOf(data.get("averageSplit")) : "N/A");
                     startActivity(intent);
                 });
 

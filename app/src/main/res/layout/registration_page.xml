@@ -1,78 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registrationPage"
-    android:orientation="vertical">
+    tools:context=".registrationPage">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="300dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/rowing"/>
-
-    <EditText
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:id="@+id/firstName"
-        android:hint="First Name"/>
+        android:layout_height="match_parent"
+        android:src="@drawable/startbackground"
+        android:scaleType="centerCrop"
+        android:alpha="0.8"/>
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:id="@+id/lastName"
-        android:hint="Last Name"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:id="@+id/reg_email"
-        android:inputType="textEmailAddress"
-        android:hint="Email"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register Here"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="24dp"
+            android:textColor="@color/white"
+            android:fontFamily=""/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:id="@+id/reg_password"
-        android:hint="Password"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/firstName"
+            android:background="@drawable/custom_border1"
+            android:hint="First Name"
+            android:textColorHint="@color/white"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:id="@+id/confirm_reg_password"
-        android:hint="Confirm Password"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/custom_border1"
+            android:id="@+id/lastName"
+            android:hint="Last Name"
+            android:textColorHint="@color/white"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:id="@+id/reg_button"
-        android:text="Register"
-        android:textAlignment="center"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/reg_email"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/custom_border1"
+            android:hint="Email"
+            android:textColorHint="@color/white"/>
 
-</LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/reg_password"
+            android:hint="Password"
+            android:textColorHint="@color/white"
+            android:background="@drawable/custom_border1" />
+
+        <EditText
+            android:id="@+id/confirm_reg_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/custom_border1"
+            android:hint="Confirm Password"
+            android:textColorHint="@color/white" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:id="@+id/reg_button"
+            android:text="Register"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:background="@drawable/custom_button1"/>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -18,30 +18,39 @@
         tools:targetApi="31">
         <activity
             android:name=".customRow"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".detailedView"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".saveSession"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".previousSessions"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".customWorkout"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".justRow"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".dashboard"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".registrationPage"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".loginPage"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
